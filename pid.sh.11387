@@ -1,0 +1,13 @@
+PID=$$
+
+echo "Renaming all ordinary files in the current directory by appending .$PID"
+for file in *
+do
+    if [ -f "$file" ]; then
+        mv "$file" "$file.$PID"
+        echo "Renamed: $file → $file.$PID"
+    fi
+done
+
+echo "Renaming complete."
+

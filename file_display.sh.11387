@@ -1,0 +1,63 @@
+#!/bin/bash
+
+while true
+do
+    echo "=============================================="
+    echo "        MENU - FILE FILTER OPTIONS"
+    echo "=============================================="
+    echo "1. Display All Ordinary Files"
+    echo "2. Display All Directory Files"
+    echo "3. Display All Special Files"
+    echo "4. Display Files Readable by UGO"
+    echo "5. Display Files Writable by UGO"
+    echo "6. Display Files Executable by UGO"
+    echo "7. Exit"
+    echo "=============================================="
+    read -p "Enter your choice [1-7]: " choice
+
+    case $choice in
+        1)
+            echo "Ordinary Files:"
+            find . -type f
+            ;;
+        2)
+            echo "Directory Files:"
+            find . -type d
+            ;;
+        3)
+            echo "Special Files (block, character, socket, named pipes):"
+            echo "Block Devices:"
+            find . -type b
+            echo "Character Devices:"
+            find . -type c
+            echo "Sockets:"
+            find . -type s
+            echo "Named Pipes:"
+            find . -type p
+            ;;
+        4)
+            echo "Files Readable by User, Group, or Others:"
+            find . -type f \( -perm -004 -o -perm -040 -o -perm -400 \)
+            ;;
+        5)
+            echo "Files Writable by User, Group, or Others:"
+            find . -type f \( -perm -002 -o -perm -020 -o -perm -200 \)
+            ;;
+        6)
+            echo "Files Executable by User, Group, or Others:"
+            find . -type f \( -perm -001 -o -perm -010 -o -perm -100 \)
+            ;;
+        7)
+            echo "Exiting... Goodbye!"
+            break
+            ;;
+        *)
+            echo "Invalid choice. Please choose between 1-7."
+            ;;
+    esac
+
+    echo ""  # Add space between menu displays
+    read -p "Press [Enter] to continue..."
+    clear
+done
+
